@@ -1,14 +1,33 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
+  <ion-navbar color="primary">
+    <ion-title >
+      Login
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<ion-content padding style="background-color:rgba(255,255,255,0.3)">
+
+  <ion-row>
+    <img src="https://cdn0-a.production.images.static6.com/I6jPZHa31_dYb3g7cwiR9oKMW6E=/640x360/smart/filters:quality(90)/vidio-media-production/uploads/video/image/1386905/avatar-the-legend-of-aang-06-meguminime-cecc5b.jpg"
+     alt="" style="border-radius:50px;">
+  </ion-row>
+  <hr>
+  <div class="form-wrapper">
+    <form (ngSubmit)="signin()"  class="login-form">
+      <ion-item>
+        <ion-input placeholder="Email" type="email" [(ngModel)]="user.email" name="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Password" type="password" [(ngModel)]="user.password" name="password"></ion-input>
+      </ion-item>
+      <button class="signin-button" ion-button full round color="pearl" type="submit">Sign in</button>
+    </form>
+    <!-- <div class="signup">
+      Do not have account? <a (click)="signup()">Sign up</a>
+    </div> -->
+  </div>
+  <p text-center>Signup to know more! <a (click)="goRegister()">Register Now!</a> </p>
+
 </ion-content>

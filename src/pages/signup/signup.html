@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title text-center>
+        Sign Up
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding style="background-color:rgba(255,255,255,0.3)">
+  
+    <ion-row>
+      <img src="https://www.w3schools.com/w3images/avatar2.png" alt="" style="border-radius:50px;">
+    </ion-row>
+    <hr>
+    <div class="form-wrapper">
+      <form (ngSubmit)="signup()"  class="login-form">
+          <ion-item>
+              <ion-input placeholder="Roll Number" type="email" [(ngModel)]="user.rollno" name="email"></ion-input>
+            </ion-item>
+        <ion-item>
+          <ion-input placeholder="Email" type="email" [(ngModel)]="user.email" name="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Password" type="password" [(ngModel)]="user.password" name="password"></ion-input>
+        </ion-item>
+        <button class="signin-button" ion-button full round color="pearl" type="submit">Register Now</button>
+      </form>
+      <!-- <div class="signup">
+        Do not have account? <a (click)="signup()">Sign up</a>
+      </div> -->
+    </div>
+    <p text-center>Already have an account! <a (click)="goLogin()">Login Now!</a> </p>
+  
+  </ion-content>
+  

@@ -13,7 +13,9 @@ $app-direction: ltr;
 
 
 @import "ionic.globals";
-
+ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .nav-decor {
+  background: transparent none !important;
+}
 
 // Shared Variables
 // --------------------------------------------------
