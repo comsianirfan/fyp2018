@@ -19,12 +19,13 @@ export class MyApp {
 this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
   result => console.log('Has permission?',result.hasPermission),
   err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
-);
+).catch(err=> console.log(err))
 
-this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
+this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, 
+  this.androidPermissions.PERMISSION.GET_ACCOUNTS]).catch(err=>console.log(err))
       statusBar.styleDefault();
       splashScreen.hide();
-    });
+    }).catch(err=> console.log(err))
   }
 }
 

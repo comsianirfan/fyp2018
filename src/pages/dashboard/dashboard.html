@@ -6,19 +6,63 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>dashboard</ion-title>
+  <ion-navbar color="secondary">
+    <ion-title text-center>Dashboard</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only><ion-icon name="notifications"></ion-icon></button>
+
+      <button ion-button >Logout</button>
+      
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-card text-center >
+    <img src="./assets/imgs/user.png" style="margin-left:90px;text-align:center;height:180px;width:auto;position:center"/>
+    <ion-card-content>
+      <ion-card-title>
+        Moeid Saleme Khan
+      </ion-card-title>
+      <p>
+        Welcome to SmartClass
+      </p>
+    </ion-card-content>
+  </ion-card>
 
-  <img src="'./assets/imgs/avatar.jpg'" alt="">
-    <button ion-button full (click)="goScan()">Scan</button>
-    <button ion-button full (click)="goProfile()">Profile</button>
-    <!-- <button ion-button full >Profile</button> -->
-    <button ion-button full (click)="goClasses()">My classes</button>
-    <button ion-button  (click)="logOut()" color="danger" text-center >Logout</button>
+  <ion-grid>
+    <ion-row>
+      <ion-col >
+        <ion-card text-center color="primary" (click)="go('MyclassesPage')">
+          <ion-card-header>
+           <ion-icon name="wine"></ion-icon> CLASSES
+          </ion-card-header>
+          <ion-card-content>
+           <p>Keep track of your courses</p> 
+          </ion-card-content>
+        </ion-card>
+        <ion-card text-center color="secondary" (click)="go('ProfilePage')">
+            <ion-card-header>
+             <ion-icon name="wine"></ion-icon> Profile
+            </ion-card-header>
+            <ion-card-content>
+             <p>Update your profile</p> 
+            </ion-card-content>
+          </ion-card>
+          <ion-card text-center color="danger" (click)="go('SettingPage')">
+              <ion-card-header>
+               <ion-icon name="wine"></ion-icon> SETTING
+              </ion-card-header>
+              <ion-card-content>
+               <p>App settings and Support</p> 
+              </ion-card-content>
+            </ion-card>
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--  -->
   </ion-content>

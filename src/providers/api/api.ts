@@ -37,9 +37,16 @@ export class ApiProvider {
   deleteUser(uid){
     return this.afs.doc('students/'+uid).delete();
   }
+  
 
 
   /* CLASSES */
 
+  getAllClasses(){
+    return this.afs.collection<any>('classes').snapshotChanges();
+  }
+  getClass(classId){
+    return this.afs.doc<any>('classes/'+classId).valueChanges();
+  }
 
 }
