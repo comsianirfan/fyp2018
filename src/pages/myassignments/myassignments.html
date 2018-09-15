@@ -7,12 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>My Assignments</ion-title>
+    <ion-title>Class Assignments</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+      <ion-list-header>
+          Assignments
+        </ion-list-header>
+<ion-item *ngFor="let x of assignments">
+<ion-avatar item-left>
+  <img src="./assets/imgs/class1.jpg">
+</ion-avatar>
+<h2>{{x.title}}</h2>
+<p>Deadline: <b>{{x?.deadline}}</b></p>
+
+<button ion-button clear item-end icon-only  (click)="openFile(x.file)"><ion-icon name="expand"></ion-icon></button>
+<button ion-button clear item-end icon-only (click)="fileUpload(x)"><ion-icon name="cloud-upload" ></ion-icon>
+</button>
 
 
+</ion-item>
+</ion-list>
 </ion-content>

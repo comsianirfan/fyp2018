@@ -1,18 +1,35 @@
 <!--
-  Generated template for the MyquizesPage page.
+  Generated template for the MyassignmentsPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>myquizes</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+    <ion-navbar>
+      <ion-title>Class Assignments</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-list>
+        <ion-list-header>
+            Quizes
+          </ion-list-header>
+  <ion-item *ngFor="let x of quizes">
+  <ion-avatar item-left>
+    <img src="./assets/imgs/class1.jpg">
+  </ion-avatar>
+  <h2>{{x.title}}</h2>
+  <p>Deadline: <b>{{x?.deadline}}</b></p>
+  
+  <button ion-button clear item-end icon-only  (click)="openFile(x.file)"><ion-icon name="expand"></ion-icon></button>
+  <button ion-button clear item-end icon-only (click)="fileUpload(x)"><ion-icon name="cloud-upload" ></ion-icon>
+  </button>
+  
+  
+  </ion-item>
+  </ion-list>
+  </ion-content>
+  

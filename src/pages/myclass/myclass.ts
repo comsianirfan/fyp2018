@@ -24,12 +24,14 @@ export class MyclassPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyclassPage');
      this.class =this.navParams.data;
+     console.log(this.class);
 
     // this.class= this.api.getClass(this.class.id);
   }
 
 
   go(page){
-    this.navCtrl.push(page);
+      this.navCtrl.push(page, this.class);
+   
   }
 }

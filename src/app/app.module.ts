@@ -21,6 +21,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 //external 
 import { QRScanner } from '@ionic-native/qr-scanner';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { FileOpener } from '@ionic-native/file-opener';
+import { Base64 } from '@ionic-native/base64';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { EmojiProvider } from '../providers/emoji';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCKlQfSGOwucl0hBwVMMrEemNVGMaHCQPQ",
@@ -58,8 +62,12 @@ const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
     HelperProvider,
+    EmojiProvider,
     AuthProvider,
     QRScanner,
+    FileOpener,
+    Base64,
+    FileChooser,
     AndroidPermissions
   ]
 })

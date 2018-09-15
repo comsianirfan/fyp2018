@@ -16,6 +16,7 @@ export class ApiProvider {
 
   constructor(public http: HttpClient,private afs:AngularFirestore) {
     console.log('Hello ApiProvider Provider');
+    console.log(localStorage.getItem('uid'))
   }
 
 
@@ -27,7 +28,7 @@ export class ApiProvider {
   }
   //Read 
   getUser(uid){
-    return this.afs.doc('students/'+uid).snapshotChanges();
+    return this.afs.doc('students/'+uid).valueChanges();
   }
   // update
   updateUser(uid,data){
@@ -45,8 +46,57 @@ export class ApiProvider {
   getAllClasses(){
     return this.afs.collection<any>('classes').snapshotChanges();
   }
+  getStudentClasses(studentId){
+    return this.afs.collection<any>('student-class', ref=> ref.where('studentId','==',studentId)).snapshotChanges();
+  }
   getClass(classId){
     return this.afs.doc<any>('classes/'+classId).valueChanges();
+  }
+  joinClass(classId,Class, student){
+    //first 
+    let today = new Date().getDate();
+    this.afs.collection('student-class').add({
+      studentId:localStorage.getItem('uid'),
+      classId:classId,
+      studentName:student.name,
+      className:Class.courseName,
+      date:today,
+      rollno:student.rollno,
+    });
+  }
+
+
+  /* ASSIGNMENT */
+  getClassAssignments(classId){
+    return this.afs.collection('assignments', ref=>ref.where('classId','==',classId)).snapshotChanges();
+  }
+
+  uploadSolutionAssignment(data){
+    /* studentId, classId, teacherId, assignmentsId */
+    return this.afs.collection('students-assignments').add(data)
+  }
+
+
+
+  /* QUIZES */
+  getClassQuizes(classId){
+    return this.afs.collection<any>('quizes', ref=>ref.where('classId','==',classId)).snapshotChanges();
+  }
+
+  /* NOTES */
+  getClassNotes(classId){
+    return this.afs.collection<any>('notes', ref=>ref.where('classId','==',classId)).snapshotChanges();
+  }
+
+
+
+  /* CONVERSATIONS */
+
+  getClassMessages(classId){
+    return this.afs.collection('conversations', ref=> ref.where('classId','==',classId)).snapshotChanges();
+  }
+  sendMessage(classId, convo){
+    return this.afs.doc('conversations/'+classId).update(convo);
   }
 
 }

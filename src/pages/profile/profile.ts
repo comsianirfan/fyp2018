@@ -17,31 +17,29 @@ import { HelperProvider } from '../../providers/helper/helper';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController,private api:ApiProvider,private helper:HelperProvider,
-     public navParams: NavParams) {
+  user;
+  
+  constructor(public navCtrl: NavController, private api:ApiProvider,private helper:HelperProvider,
+    public navParams: NavParams) {
   }
 
-
-  user:any;
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
+    this.getUser();
   }
 
 
-  getProfile(){
-    let uid = localStorage.getItem('uid');
-    this.api.getUser(uid).subscribe(resp=>{
-      console.log(resp);
-      this.user = resp;
+  getUser(){
+    this.api.getUser(localStorage.getItem('uid')).subscribe(response=>{
+      console.log(response);
+      this.user = response;
     })
   }
 
 
-  update(){
-    this.api.updateUser(localStorage.getItem('uid'), this.user).then(up=>{
-      this.helper.presentBottomToast(`Profile Updated`);
-    },err=>{
-      this.helper.presentBottomToast(`Error updating`)
+  updateProfile(){
+    this.api.updateUser(localStorage.getItem('uid'), this.user).then(response=>{
+      this.helper.presentBottomToast(`User profile Updated!`)
     })
   }
 

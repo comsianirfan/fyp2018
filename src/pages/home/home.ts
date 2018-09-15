@@ -46,16 +46,14 @@ export class HomePage {
   // }
 
   signin() {
-    
+    this.helper.load();
      this.auth.login(this.user.email, this.user.password).then(resp=>{
        //on success authentication
        this.api.getUser(resp.user.uid).subscribe(response=>{
          console.log(resp);
          this.api.user = response; 
          localStorage.setItem('uid', resp.user.uid);
-         this.navCtrl.setRoot('DashboardPage'); 
-
-
+         this.navCtrl.setRoot('DashboardPage').then(()=> this.helper.dismiss()); 
        }, error=>{
         this.helper.presentBottomToast(error.message);
 

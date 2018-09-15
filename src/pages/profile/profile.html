@@ -1,39 +1,107 @@
-<!--
-  Generated template for the ProfilePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar color="secondary">
-    <ion-title>profile</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only (tap)="openModal()">
+        <ion-icon name="md-power" ></ion-icon>
+      </button>
+      </ion-buttons>
   </ion-navbar>
-
 </ion-header>
+<ion-content padding class="transparent-header" >
+<!-- 
+<h3 text-center>Edit Profile </h3> -->
+    <!-- <span id="prfile-name">asd</span> -->
+    <div id="content" *ngIf="user">
+        <div id="profile-info" padding text-center>
+          <img id="profile-image" [src]="user.photo || './assets/imgs/user.png' " (tap)="updateImage()" style="border-radius:120px;width:140px;height:140px;position:center;">
+          
+          <h3 id="profile-name">
+            <ion-item>
+              <ion-label floating>Email</ion-label>
+              <ion-input type="email" [(ngModel)]="user.email" disabled></ion-input>
+            </ion-item></h3>
+          <h3 id="profile-name">
+              <ion-item>
+                <ion-label floating>Full Name</ion-label>
+                <ion-input type="text" [(ngModel)]="user.name"></ion-input>
+              </ion-item></h3>
+              <h3 id="profile-name">
+                <ion-item>
+                  <ion-label floating>Phone</ion-label>
+                  <ion-input type="tel" [(ngModel)]="user.phone"></ion-input>
+                </ion-item></h3>
+                <h3 id="profile-name">
+                  <ion-item>
+                    <ion-label floating>Blood Group+</ion-label>
+                    <ion-input type="text" [(ngModel)]="user.bloodGroup"></ion-input>
+                  </ion-item></h3>
+                  <h3 id="profile-name">
+                    <ion-item>
+                      <ion-label floating>DOB</ion-label>
+                      <ion-input type="date" [(ngModel)]="user.dob"></ion-input>
+                    </ion-item></h3>
+                  
+               
+             
+                       
+<br>
 
-
-<ion-content padding>
-<main *ngIf="user">
-    <img [src]="user.photo || './assets/imgs/avatar.jpg'" alt="">
-
+                              <button ion-button full (click)="updateProfile()">Update Profile</button>
+<br><br>
+                        
+<!--                         
+          <p>{{api._user?.position}} &bull; {{api._user?.state}}, {{api._user?.country}}</p>
+          <p class="profile-description">{{api._user?.info}}</p> -->
+          <!-- <button ion-button *ngIf="!following" small color="purple" (click)="follow()">Follow</button>
+          <button ion-button *ngIf="following" class="follow-button" small color="purple" (click)="follow()">Following<ion-icon name="checkmark"></ion-icon></button> -->
+        </div>
+        </div>
+  <!-- <ion-list no-border>
+    <ion-list-header>
+      General
+    </ion-list-header>
     <ion-item>
-      <ion-label floating ></ion-label>
-      <ion-input type="" [(ngModel)]="user.name"></ion-input>
+      <ion-icon name='settings' item-start></ion-icon>
+      <ion-label>App Language</ion-label>
+      <ion-select [(ngModel)]="language">
+        <ion-option *ngFor="let language of languages" [value]="language">{{language}}</ion-option>
+      </ion-select>
     </ion-item>
     <ion-item>
-        <ion-label floating ></ion-label>
-        <ion-input type="" [(ngModel)]="user.rollno"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating ></ion-label>
-          <ion-input type="" [(ngModel)]="user.email"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating ></ion-label>
-            <ion-input type="" [(ngModel)]="user.subject"></ion-input>
-          </ion-item>
-          <button ion-button full (click)="update()">Update</button>
-
-        </main>
+      <ion-toggle [(ngModel)]="enableNotifications" (click)="toggleNotifications()"></ion-toggle>
+      <ion-label class="label"> Enable notifications </ion-label>
+      <ion-icon name='notifications' item-start></ion-icon>
+    </ion-item>
+  </ion-list> -->
+  <!-- <ion-list>
+    <ion-list-header>
+      Currency
+    </ion-list-header>
+    <ion-item>
+      <ion-icon name='card' item-start></ion-icon>
+      <ion-label>Payment Method</ion-label>
+      <ion-select [(ngModel)]="paymentMethod">
+        <ion-option *ngFor="let method of paymentMethods" [value]="method">{{method}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-icon name='logo-usd' item-start></ion-icon>
+      <ion-label>Currency</ion-label>
+      <ion-select [(ngModel)]="currency">
+        <ion-option *ngFor="let currency of currencies" [value]="currency">{{currency}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      Other
+    </ion-list-header>
+    <ion-item>
+      <ion-icon name='power' item-start></ion-icon>
+      <button ion-button (click)="logOut()" item-end>
+      Logout
+      </button>
+    </ion-item>
+  </ion-list> -->
 </ion-content>

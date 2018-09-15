@@ -10,12 +10,26 @@ import { AlertController, ToastController, LoadingController } from 'ionic-angul
 */
 @Injectable()
 export class HelperProvider {
+ 
+  loader: any;
 
-  constructor(private alertCtrl:AlertController, public loadingCtrl: LoadingController,
+  constructor(private alertCtrl:AlertController, private loadingCtrl: LoadingController,
      private toastCtrl:ToastController) {
     console.log('Hello HelperProvider Provider');
   }
 
+
+  
+  load() {
+    this.loader = this.loadingCtrl.create({
+      content: ''
+    });
+    this.loader.present();
+  }
+
+  dismiss() {
+    if(this.loader){ this.loader.dismiss(); this.loader = null; }
+  }
 
 
 
@@ -38,7 +52,45 @@ export class HelperProvider {
     });
     alert.present();
   }
-
+  presentPrompt(title, inputs,buttons) {
+    let alert = this.alertCtrl.create({
+      title: 'Login',
+      inputs:inputs
+      //  [
+      //   {
+      //     name: 'username',
+      //     placeholder: 'Username'
+      //   },
+      //   {
+      //     name: 'password',
+      //     placeholder: 'Password',
+      //     type: 'password'
+      //   }
+      // ]
+      ,buttons:buttons
+      //  [
+      //   {
+      //     text: 'Cancel',
+      //     role: 'cancel',
+      //     handler: data => {
+      //       console.log('Cancel clicked');
+      //     }
+      //   },
+      //   {
+      //     text: 'Login',
+      //     handler: data => {
+      //       if (User.isValid(data.username, data.password)) {
+      //         // logged in!
+      //       } else {
+      //         // invalid login
+      //         return false;
+      //       }
+      //     }
+      //   }
+      // ]
+    });
+    alert.present();
+  }
 
   
   presentToast(msg,dur,pos) {

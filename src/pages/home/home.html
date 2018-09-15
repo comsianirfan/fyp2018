@@ -1,3 +1,50 @@
+
+<ion-header>
+  </ion-header>
+  
+  
+  <ion-content class="page-welcome pane no-scroll">
+    <div class="welcome-container">
+      <div class="logo-wrapper">
+        <div class="logo">
+         Smart Class
+          <ion-icon name="ios-contacts"></ion-icon>
+        </div>
+        <div class="testimonial">
+        </div>
+      </div>
+      <div class="form-wrapper">
+        <form (ngSubmit)="signin()"  class="login-form">
+          <ion-item>
+            <ion-input placeholder="Email" type="email" [(ngModel)]="user.email" name="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Password" type="password" [(ngModel)]="user.password" name="password"></ion-input>
+          </ion-item>
+          <button class="signin-button" ion-button full round color="pearl" type="submit">Sign in</button>
+        </form>
+        <div class="signup">
+          Do not have account? <a (click)="goRegister()">Sign up</a>
+        </div>
+      </div>
+    </div>
+    <ion-footer text-center>
+     Smart Class Inc.
+    </ion-footer>
+  </ion-content>
+
+  
+  <!-- OLD -->
+
+
+
+
+
+
+
+<!-- 
+
+
 <ion-header>
   <ion-navbar color="primary">
     <ion-title >
@@ -24,10 +71,8 @@
       </ion-item>
       <button class="signin-button" ion-button full round color="pearl" type="submit">Sign in</button>
     </form>
-    <!-- <div class="signup">
-      Do not have account? <a (click)="signup()">Sign up</a>
-    </div> -->
+ 
   </div>
   <p text-center>Signup to know more! <a (click)="goRegister()">Register Now!</a> </p>
 
-</ion-content>
+</ion-content> -->
