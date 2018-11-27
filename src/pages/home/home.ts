@@ -46,7 +46,7 @@ export class HomePage {
   // }
 
   signin() {
-    this.helper.load();
+    // this.helper.load();
      this.auth.login(this.user.email, this.user.password).then(resp=>{
        //on success authentication
        this.api.getUser(resp.user.uid).subscribe(response=>{

@@ -1,5 +1,5 @@
 <!--
-  Generated template for the MyassignmentsPage page.
+  Generated template for the NotificationsPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Class Assignments</ion-title>
+    <ion-title>Class Alerts</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -15,18 +15,20 @@
 <ion-content padding>
   <ion-list>
       <ion-list-header>
-          Assignments
+         Notifications
         </ion-list-header>
-<ion-item *ngFor="let x of assignments">
+<ion-item *ngFor="let x of notifications">
 <ion-avatar item-left>
   <img src="./assets/imgs/class1.jpg">
 </ion-avatar>
-<h2>{{x.title}}</h2>
-<p>Deadline: <b>{{x?.deadline}}</b></p>
+<h2>{{x.description}}</h2>
+<p>Start Date: <b>{{x?.startDate}}</b></p>
+<p>End Date: <b>{{x?.deadline}}</b></p>
+<p>Status: <b>{{x?.status}}</b></p>
 <!-- <a href="{{x?.urlnew}}">LINK</a> -->
-<button ion-button clear item-end icon-only  (click)="openWithInAppBrowser(x.urlnew)"><ion-icon name="expand"></ion-icon></button>
+<!-- <button ion-button clear item-end icon-only  (click)="openWithInAppBrowser(x.urlnew)"><ion-icon name="expand"></ion-icon></button>
 <button ion-button clear item-end icon-only (click)="fileUpload(x)"><ion-icon name="cloud-upload" ></ion-icon>
-</button>
+</button> -->
 
 
 </ion-item>

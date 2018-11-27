@@ -11,7 +11,7 @@
     <ion-buttons end>
         <button ion-button icon-only><ion-icon name="notifications"></ion-icon></button>
 
-      <button ion-button >Logout</button>
+      <button ion-button (click)="logOut()">Logout</button>
       
     </ion-buttons>
   </ion-navbar>
@@ -23,8 +23,8 @@
   <ion-card text-center >
     <img src="./assets/imgs/user.png" style="margin-left:90px;text-align:center;height:180px;width:auto;position:center"/>
     <ion-card-content>
-      <ion-card-title>
-        Moeid Saleme Khan
+      <ion-card-title *ngIf="student">
+       {{student.firstName}}
       </ion-card-title>
       <p>
         Welcome to SmartClass

@@ -1,0 +1,48 @@
+<!--
+  Generated template for the QuestionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title text-center *ngFor="let question of question">{{question?.note}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card text-center >
+    
+    <ion-card-content>
+      <ion-card-title *ngFor="let question of question">
+       <strong>{{question?.note}}</strong>
+      </ion-card-title>
+     
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="answers">
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  </div>
+
+<ion-item *ngFor="let answer of Answers" >
+<ion-avatar item-left>
+<img src="./assets/imgs/class1.jpg">
+</ion-avatar>
+<h2>{{answer?.answer}}</h2>
+<h3>Votes::{{answer?.good}}</h3>
+<button ion-button type="button" class="btn btn-success"  (click)="voteUp(answer)">voteup</button>
+<!-- <p>ID:. {{class?.courseId}} ||  </p> -->
+</ion-item>
+<form #addAnswerForm="ngForm" (submit)="submitAnswer(addAnswerForm.value)">
+  <ion-item>
+ <ion-label>Description</ion-label>
+    <ion-textarea placeholder="Answer" type="text" ngModel name="answer"></ion-textarea>
+  </ion-item>
+  <button  ion-button type="submit" block>SEND ANSWER</button>
+</form>
+  <!--  -->
+  </ion-content>

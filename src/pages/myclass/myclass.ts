@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
-
+import {DiscussionsPage} from '../../pages/discussions/discussions';
 /**
  * Generated class for the MyclassPage page.
  *
@@ -23,12 +23,17 @@ export class MyclassPage {
   class;
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyclassPage');
-     this.class =this.navParams.data;
+    //  this.class =this.navParams.data;
      console.log(this.class);
-
+this.getClass()
     // this.class= this.api.getClass(this.class.id);
   }
 
+  getClass(){
+    this.api.getStudentClass(localStorage.getItem('cid')).subscribe(response=>{
+      this.class=response;
+    })
+  }
 
   go(page){
       this.navCtrl.push(page, this.class);

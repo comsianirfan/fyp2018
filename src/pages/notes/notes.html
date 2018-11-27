@@ -7,12 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>notes</ion-title>
+    <ion-title>Class Notes</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+      <ion-list-header>
+          Reading Material
+        </ion-list-header>
+<ion-item *ngFor="let x of notes">
+<ion-avatar item-left>
+  <img src="./assets/imgs/class1.jpg">
+</ion-avatar>
+<h2>{{x.title}}</h2>
+<p>Note: <b>{{x?.note}}</b></p>
+<!-- <a href="{{x?.urlnew}}">LINK</a> -->
+<button ion-button clear item-end icon-only  (click)="openWithInAppBrowser(x.urlnew)"><ion-icon name="expand"></ion-icon></button>
+<button ion-button clear item-end icon-only (click)="fileUpload(x)"><ion-icon name="cloud-upload" ></ion-icon>
+</button>
 
+
+</ion-item>
+</ion-list>
 </ion-content>

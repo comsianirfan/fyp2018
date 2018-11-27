@@ -21,24 +21,31 @@ export class MyclassesPage {
   constructor(public navCtrl: NavController,private api:ApiProvider,private helper:HelperProvider,
      public navParams: NavParams) {
   }
-
+userId;
   classes:any;
   ionViewDidLoad() {
+    this.userId=localStorage.getItem('uid');
+    console.log('ionViewDidLoad MyclassesPage');
     this.getClasses();
     console.log('ionViewDidLoad MyclassesPage');
+    
   }
 
   goClass(c){
-    this.api.getClass(c.classId).subscribe(response=>{
+    localStorage.setItem('cid',c.id);
+    console.log(c.id)
+    console.log(localStorage.getItem('cid'))
+    this.api.getStudentClass(localStorage.getItem('cid')).subscribe(response=>{
       let data= response;
-      data.id = c.classId;
+      // data.id = c.classId;
       this.navCtrl.push('MyclassPage', data);
     })
   }
 
 
   getClasses(){
-    return this.api.getStudentClasses(localStorage.getItem('uid'))
+
+    return this.api.getStudentClasses(this.userId)
     .pipe(map(actions => actions.map(a =>{
             const data = a.payload.doc.data() ;
             const id = a.payload.doc.id;

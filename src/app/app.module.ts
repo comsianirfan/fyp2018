@@ -3,7 +3,9 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import { FlashCardComponent } from '../components/flash-card/flash-card';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 //firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -19,7 +21,10 @@ import { AuthProvider } from '../providers/auth/auth';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 //external 
-import { QRScanner } from '@ionic-native/qr-scanner';
+
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { Camera } from '@ionic-native/camera';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { FileOpener } from '@ionic-native/file-opener';
 import { Base64 } from '@ionic-native/base64';
@@ -37,7 +42,8 @@ const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    FlashCardComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,8 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule // imports firebase/storage only needed for storage features
+    AngularFireStorageModule,
+    NgxQRCodeModule // imports firebase/storage only needed for storage features
  
 
   ],
@@ -68,7 +75,15 @@ const firebaseConfig = {
     FileOpener,
     Base64,
     FileChooser,
-    AndroidPermissions
+    AndroidPermissions,
+    Camera,
+    QRScanner,
+    BarcodeScanner,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    InAppBrowser,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    
+    
   ]
 })
 export class AppModule {}

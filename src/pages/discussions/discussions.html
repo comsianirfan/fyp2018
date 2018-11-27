@@ -1,0 +1,39 @@
+<!--
+  Generated template for the DiscussionsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>DISCUSSION PANEL</ion-title>
+ 
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+        <ion-fab right bottom>
+            <button ion-fab color="success"  (tap)="addQuestion()">      
+              <ion-icon name="ios-add-outline"></ion-icon>    
+                </button>
+          </ion-fab>
+
+  
+
+<ion-item *ngFor="let question of Questions" (click)="goClass(question)">
+  <ion-avatar item-left>
+    <img src="./assets/imgs/class1.jpg">
+  </ion-avatar>
+  <h2>{{question?.note}}</h2>
+  <p>DATE:. {{question?.startDate}} ||  </p>
+  <button ion button  (tap)='delete(question)'><ion-icon name="trash" style="color:red"></ion-icon></button><br>
+  <button ion button  (tap)='goDiscussion(question)'><ion-icon name="arrow-dropright-circle" style="color:green"></ion-icon></button>
+
+</ion-item>
+
+
+
+
+</ion-content>

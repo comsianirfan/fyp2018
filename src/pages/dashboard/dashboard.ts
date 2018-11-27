@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { HelperProvider } from '../../providers/helper/helper';
-
+import {HomePage} from '../../pages/home/home';
 /**
  * Generated class for the DashboardPage page.
  *
@@ -22,11 +22,17 @@ export class DashboardPage {
      public navParams: NavParams) {
   }
   user;
+  student;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DashboardPage');
     console.log(localStorage.getItem('uid'));
-    this.getUser();
+    // this.getUser();
+    this.api.getUser(localStorage.getItem('uid')).subscribe(resp=>{
+      this.student =resp;
+      console.log(this.student.firstName);
+    
+    });
   }
 
 
@@ -35,7 +41,8 @@ export class DashboardPage {
     this.helper.presentConfirm('Logout', 'Are you sure you want to logout?', 'LOGOUT','Cancel',()=>{
       //on success
       localStorage.clear();
-      this.navCtrl.setRoot('LoginPage');
+     this.navCtrl.push(HomePage);
+      
     },()=>{
       //on failure
       console.log(`cancelled`)

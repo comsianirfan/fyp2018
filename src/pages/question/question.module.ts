@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { BarcodePage } from './barcode';
-
+import { QuestionPage } from './question';
 
 @NgModule({
   declarations: [
-    BarcodePage,
+    QuestionPage,
   ],
   imports: [
-    IonicPageModule.forChild(BarcodePage),
+    IonicPageModule.forChild(QuestionPage),
   ],
 })
-export class BarcodePageModule {}
+export class QuestionPageModule {}

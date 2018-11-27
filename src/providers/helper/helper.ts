@@ -54,7 +54,7 @@ export class HelperProvider {
   }
   presentPrompt(title, inputs,buttons) {
     let alert = this.alertCtrl.create({
-      title: 'Login',
+      title: 'Add Question',
       inputs:inputs
       //  [
       //   {

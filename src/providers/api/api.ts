@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import firebase from 'firebase';
 
 /*
   Generated class for the ApiProvider provider.
@@ -13,12 +14,36 @@ export class ApiProvider {
 
 
   user;
-
+studentId
   constructor(public http: HttpClient,private afs:AngularFirestore) {
     console.log('Hello ApiProvider Provider');
-    console.log(localStorage.getItem('uid'))
+    console.log(localStorage.getItem('uid'));
+    this.studentId=localStorage.getItem('uid');
+
   }
 
+
+
+
+  enrollStudent(classId) {
+    return this.afs.collection('classes').doc(classId).update({
+      'students':
+        firebase.    firestore.FieldValue.arrayUnion(this.studentId)
+  
+      // students : this.studentId
+    }
+    );
+  }
+
+  getStudentClasses(studentId) {
+    return this.afs.collection('classes', ref => ref.where('students', 'array-contains', this.studentId)).snapshotChanges();
+   
+   }
+   
+   getStudentClass(classId) {
+     return this.afs.doc('classes/' + classId).valueChanges();
+   }
+   
 
   /* USER */
 
@@ -38,7 +63,51 @@ export class ApiProvider {
   deleteUser(uid){
     return this.afs.doc('students/'+uid).delete();
   }
-  
+  //Class notifications
+  getNotifications(classId) {
+    return this.afs.collection('notification', ref => ref.where('classId', '==', classId)).snapshotChanges();
+  }
+
+//////////Discussion Panel Code////////////
+getQuestion(qid) {
+  return this.afs.collection('discussion', ref => ref.where('qid', '==', qid)).valueChanges();
+}
+
+
+
+// Post Question
+addQuestion(data) {
+  return this.afs.collection('discussion').add(data);
+}
+
+// Post Answer
+addAnswer(data) {
+  return this.afs.collection('answer').add(data);
+}
+
+
+
+// Read Answers
+getAllAnswers(qid) {
+  return this.afs.collection('answer', ref => ref.where('qid', '==', qid).orderBy("good", "desc")).snapshotChanges();
+}
+
+// Read
+getAllQuestions(classId) {
+  return this.afs.collection('discussion', ref => ref.where('classId', '==', classId)).snapshotChanges();
+}
+
+
+// Delete Question
+
+deleteQuestion(id) {
+  return this.afs.doc('discussion/' + id).delete();
+}
+
+//Vote up
+voteUp(id, data) {
+  return this.afs.doc('answer/' + id).set(data);
+}
 
 
   /* CLASSES */
@@ -46,9 +115,9 @@ export class ApiProvider {
   getAllClasses(){
     return this.afs.collection<any>('classes').snapshotChanges();
   }
-  getStudentClasses(studentId){
-    return this.afs.collection<any>('student-class', ref=> ref.where('studentId','==',studentId)).snapshotChanges();
-  }
+  // getStudentClasses(studentId){
+  //   return this.afs.collection<any>('student-class', ref=> ref.where('studentId','==',studentId)).snapshotChanges();
+  // }
   getClass(classId){
     return this.afs.doc<any>('classes/'+classId).valueChanges();
   }
@@ -63,6 +132,13 @@ export class ApiProvider {
       date:today,
       rollno:student.rollno,
     });
+  }
+
+
+  //CLASS READING MATERIAL AND NOTES//
+
+  getNotes(classId){
+    return this.afs.collection('readingmaterial', ref=>ref.where('classId','==',classId)).snapshotChanges();
   }
 
 
