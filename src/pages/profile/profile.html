@@ -23,30 +23,27 @@
             </ion-item></h3>
           <h3 id="profile-name">
               <ion-item>
-                <ion-label floating>Full Name</ion-label>
-                <ion-input type="text" [(ngModel)]="user.name"></ion-input>
+                <ion-label floating>First Name</ion-label>
+                <ion-input type="text" [(ngModel)]="user.firstName"></ion-input>
               </ion-item></h3>
               <h3 id="profile-name">
                 <ion-item>
-                  <ion-label floating>Phone</ion-label>
-                  <ion-input type="tel" [(ngModel)]="user.phone"></ion-input>
+                  <ion-label floating>Last  Name</ion-label>
+                  <ion-input type="text" [(ngModel)]="user.lastName"></ion-input>
                 </ion-item></h3>
-                <h3 id="profile-name">
-                  <ion-item>
-                    <ion-label floating>Blood Group+</ion-label>
-                    <ion-input type="text" [(ngModel)]="user.bloodGroup"></ion-input>
-                  </ion-item></h3>
-                  <h3 id="profile-name">
-                    <ion-item>
-                      <ion-label floating>DOB</ion-label>
-                      <ion-input type="date" [(ngModel)]="user.dob"></ion-input>
-                    </ion-item></h3>
+              <h3 id="profile-name">
+                <ion-item>
+                  <ion-label floating>Roll Numer</ion-label>
+                  <ion-input type="tel" [(ngModel)]="user.rollno"></ion-input>
+                </ion-item></h3>
+                
+                 
                   
-               
+             
              
                        
 <br>
-
+<button ion-button color="danger" (click)="resetPass(user?.email)">Resest Password</button>
                               <button ion-button full (click)="updateProfile()">Update Profile</button>
 <br><br>
                         

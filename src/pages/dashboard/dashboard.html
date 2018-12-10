@@ -29,36 +29,40 @@
       <p>
         Welcome to SmartClass
       </p>
+     
     </ion-card-content>
   </ion-card>
 
   <ion-grid>
     <ion-row>
       <ion-col >
-        <ion-card text-center color="primary" (click)="go('MyclassesPage')">
+        <ion-card text-center color="secondary" (click)="go('MyclassesPage')">
           <ion-card-header>
-           <ion-icon name="wine"></ion-icon> CLASSES
+           <ion-icon name="albums"></ion-icon> CLASSES
           </ion-card-header>
           <ion-card-content>
            <p>Keep track of your courses</p> 
           </ion-card-content>
         </ion-card>
+
+        <ion-card text-center color="secondary" (click)="go('BadgePage')">
+          <ion-card-header>
+           <ion-icon name="ionic"></ion-icon> Badge
+          </ion-card-header>
+          <ion-card-content>
+           <p>Update your profile</p> 
+          </ion-card-content>
+        </ion-card>
+
         <ion-card text-center color="secondary" (click)="go('ProfilePage')">
             <ion-card-header>
-             <ion-icon name="wine"></ion-icon> Profile
+             <ion-icon name="person"></ion-icon> Profile
             </ion-card-header>
             <ion-card-content>
              <p>Update your profile</p> 
             </ion-card-content>
           </ion-card>
-          <ion-card text-center color="danger" (click)="go('SettingPage')">
-              <ion-card-header>
-               <ion-icon name="wine"></ion-icon> SETTING
-              </ion-card-header>
-              <ion-card-content>
-               <p>App settings and Support</p> 
-              </ion-card-content>
-            </ion-card>
+         
         
       </ion-col>
     </ion-row>

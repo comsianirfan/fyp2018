@@ -30,12 +30,17 @@ export class ProfilePage {
 
 
   getUser(){
-    this.api.getUser(localStorage.getItem('uid')).subscribe(response=>{
+    this.api.getStudentProfile(localStorage.getItem('uid')).subscribe(response=>{
       console.log(response);
       this.user = response;
     })
   }
-
+  
+  resetPass(email){
+  
+        this.api.resetPassword(email);
+      
+    }
 
   updateProfile(){
     this.api.updateUser(localStorage.getItem('uid'), this.user).then(response=>{

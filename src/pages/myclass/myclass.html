@@ -23,6 +23,8 @@
         <p>
           Welcome to {{class?.courseName}}
         </p>
+
+        <button (tap)="details()" ion-button  style="color:green">MESSAGE TEACHER</button>
       </ion-card-content>
     </ion-card>
   
@@ -61,7 +63,7 @@
                    <p>Discussions of class</p> 
                   </ion-card-content>
                 </ion-card>
-            <ion-card text-center color="primary" (click)="go('MyquizesPage')">
+            <ion-card text-center color="primary" (click)="go('QuizPage')">
                 <ion-card-header>
                  <ion-icon name="wine"></ion-icon> QUIZZES
                 </ion-card-header>

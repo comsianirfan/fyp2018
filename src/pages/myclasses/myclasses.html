@@ -24,16 +24,13 @@
                 </button>
           </ion-fab>
 
-  <div *ngIf="classes">
-          <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-        </div>
-
+ 
 <ion-item *ngFor="let class of classes" (click)="goClass(class)">
   <ion-avatar item-left>
     <img src="./assets/imgs/class1.jpg">
   </ion-avatar>
-  <h2>{{class?.courseName}}</h2>
-  <p>ID:. {{class?.courseId}} ||  </p>
+  <h2>{{class.courseName}}</h2>
+  <p>ID:. {{class.courseId}} ||  </p>
 </ion-item>
 
 

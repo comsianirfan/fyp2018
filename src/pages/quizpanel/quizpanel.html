@@ -1,0 +1,76 @@
+<!--
+  Generated template for the QuizpanelPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>quizpanel</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding >
+  <form #quizSolution="ngForm" (submit)="submitQuiz(quizSolution.value)">
+    <ion-item  >
+      
+        <h2>{{quiz?.q1}}</h2>
+        <p>A1:. {{quiz?.opt1}}  </p>
+        <p>A2:. {{quiz?.opt2}}  </p>
+        <p>A3:. {{quiz?.opt3}}  </p>
+        <p>A4:. {{quiz?.opt4}}  </p>
+        <input type="text" name=correctans placeholder="answer" ngModel>
+        
+      
+      </ion-item>
+      <ion-item  >
+         
+          <h2>{{quiz?.q2}}</h2>
+          <p>A1:. {{quiz?.opt11}}  </p>
+          <p>A2:. {{quiz?.opt22}}  </p>
+          <p>A3:. {{quiz?.opt33}}  </p>
+          <p>A4:. {{quiz?.opt44}}  </p>
+          <input type="text" name=correctans2 placeholder="answer" ngModel>
+          
+        
+        </ion-item>
+        <ion-item  >
+           
+            <h2>{{quiz?.q3}}</h2>
+            <p>A1:. {{quiz?.opt111}}  </p>
+            <p>A2:. {{quiz?.opt222}}  </p>
+            <p>A3:. {{quiz?.opt333}}  </p>
+            <p>A4:. {{quiz?.opt444}}  </p>
+            <input type="text" name=correctans3 placeholder="answer" ngModel>
+            
+          
+          </ion-item>
+          <ion-item  >
+             
+              <h2>{{quiz?.q4}}</h2>
+              <p>A1:. {{quiz?.opt1111}}  </p>
+              <p>A2:. {{quiz?.opt2222}}  </p>
+              <p>A3:. {{quiz?.opt3333}}  </p>
+              <p>A4:. {{quiz?.opt4444}}  </p>
+              <input type="text" name=correctans4 placeholder="answer" ngModel>
+              
+            
+            </ion-item>
+            <ion-item  >
+               
+                <h2>{{quiz?.q5}}</h2>
+                <p>A1:. {{quiz?.opt11111}}  </p>
+                <p>A2:. {{quiz?.opt22222}}  </p>
+                <p>A3:. {{quiz?.opt33333}}  </p>
+                <p>A4:. {{quiz?.opt44444}}  </p>
+                <input type="text" name=correctans5 placeholder="answer" ngModel>
+                
+              
+              </ion-item>
+    </form>
+<button ion-button  (click)="submitQuiz(quizSolution.value)" > SUBMIT </button>
+
+</ion-content>

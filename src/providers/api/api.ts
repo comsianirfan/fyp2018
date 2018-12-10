@@ -28,25 +28,64 @@ studentId
   enrollStudent(classId) {
     return this.afs.collection('classes').doc(classId).update({
       'students':
-        firebase.    firestore.FieldValue.arrayUnion(this.studentId)
+        firebase.    firestore.FieldValue.arrayUnion(localStorage.getItem('uid'))
   
       // students : this.studentId
     }
     );
   }
 
+  
   getStudentClasses(studentId) {
-    return this.afs.collection('classes', ref => ref.where('students', 'array-contains', this.studentId)).snapshotChanges();
-   
+    
+      console.log(studentId);
+    return this.afs.collection('classes', ref => ref.where('students', 'array-contains', studentId)).snapshotChanges();
+    
+    
+   }
+   getalerts(studentId){
+    return this.afs.doc('students/' + studentId).valueChanges();
+   }
+   setSeen(studentId,val){
+    return this.afs.doc('students/' + studentId).update({
+      'seen':firebase.firestore.FieldValue.arrayUnion(val)
+   }
+    );
+   }
+   removeLatest(studentId,val){
+    return this.afs.doc('students/' + studentId).update({
+      'alerts':firebase.firestore.FieldValue.arrayRemove(val)
+   }
+    );
    }
    
    getStudentClass(classId) {
+     if(classId!=null){
      return this.afs.doc('classes/' + classId).valueChanges();
+     }
+     else{
+       console.log("not available");
+     }
    }
    
 
-  /* USER */
+   ///Reset Password
+   resetPassword(email: string) {
+    const auth = firebase.auth();
+    return auth.sendPasswordResetEmail(email)
+      .then(() => alert(" reset email sent"))
+      .catch((error) => console.log(error));
+  }
 
+  /* USER */
+  getStudentProfile(id) {
+    return this.afs.doc('students/' + id).valueChanges();
+
+  }
+  getTeacherProfile(id) {
+    return this.afs.doc('teachers/' + id).valueChanges();
+
+  }
   //Create 
   addUser(uid,data){
     return this.afs.doc('students/'+uid).set(data);
@@ -110,6 +149,66 @@ voteUp(id, data) {
 }
 
 
+//Private Mesagges
+
+//Send Message
+sendText(data,message){
+  return this.afs.collection('sent').doc(this.studentId.concat(data.teacherId)).set({data,
+    'sent':
+      firebase.    firestore.FieldValue.arrayUnion(message)
+
+
+    // students : this.studentId
+  },
+  {merge:true}
+  );
+}
+// sendReply(data,message){
+//   return this.afs.collection('sent').doc(data.studentId.concat(this.adminId)).set({data,
+//     'reply':
+//     firebase.firestore.FieldValue.arrayUnion(message)
+//   },{merge:true});
+// }
+
+//Recieve message
+getMessages(studentId,classId) {
+  return this.afs.collection('sent', ref => ref.orderBy('startTime').where('senderId', '==', studentId).where('classId','==',classId)).snapshotChanges();
+}
+// getMyMessages(studentId,teacherId):any{
+
+//   let response:any = []; 
+//   this.afs.collection('sent').doc(studentId.concat(teacherId)).snapshotChanges().subscribe(function(snapshot){
+//     response.push(snapshot.payload.get("sent"));
+//     // response=snapshot.payload.get("sent");
+//     //response = snapshot.payload.get("sent");
+//     console.log(snapshot.payload.get("sent"));
+//   });
+//   return response;
+// }
+
+getMyMessages(studentId,teacherId):any{
+ 
+  return this.afs.collection('sent').doc(studentId.concat(teacherId)).valueChanges();
+  
+}
+
+getTeacherMessage(teacherId){
+  return this.afs.collection('sent', ref => ref.where('data.teacherId', '==', teacherId)).valueChanges();
+}
+
+sendMsg(tid){
+  return this.afs.collection('sent').doc(this.studentId.concat(tid)).set({
+    'sent':
+      firebase.    firestore.FieldValue.arrayUnion("START TEST")
+      
+
+
+    // students : this.studentId
+  },
+  {merge:true}
+  );
+}
+
   /* CLASSES */
 
   getAllClasses(){
@@ -152,12 +251,32 @@ voteUp(id, data) {
     return this.afs.collection('students-assignments').add(data)
   }
 
-
+  ///QUIZZES NEW CODE BY ALE
+  getAllQuizes() {
+    return this.afs.collection('quizes').snapshotChanges();
+  }
+  getQuizes(classId) {
+    return this.afs.collection('quizes', ref => ref.where('classId', '==', classId)).snapshotChanges();
+  }
+  // ~ READ Single
+  getQuiz(id) {
+    return this.afs.doc('quizes/' + id).valueChanges();
+  }
 
   /* QUIZES */
   getClassQuizes(classId){
     return this.afs.collection<any>('quizes', ref=>ref.where('classId','==',classId)).snapshotChanges();
   }
+
+submitQuiz(data){
+  return this.afs.collection('studentquizes').add(data);
+}
+assignMarks(val,marks){
+  console.log(val)
+  return this.afs.collection('students/').doc(this.studentId).update({
+    val:marks+marks
+  });
+}
 
   /* NOTES */
   getClassNotes(classId){

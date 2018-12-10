@@ -11,7 +11,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-
+import { DatePipe } from '@angular/common'
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { FormsModule } from '@angular/forms';
@@ -78,6 +78,7 @@ const firebaseConfig = {
     AndroidPermissions,
     Camera,
     QRScanner,
+    DatePipe,
     BarcodeScanner,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     InAppBrowser,

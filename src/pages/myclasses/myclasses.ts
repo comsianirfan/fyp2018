@@ -26,7 +26,7 @@ userId;
   ionViewDidLoad() {
     this.userId=localStorage.getItem('uid');
     console.log('ionViewDidLoad MyclassesPage');
-    this.getClasses();
+    this.getClasses(this.userId);
     console.log('ionViewDidLoad MyclassesPage');
     
   }
@@ -34,7 +34,7 @@ userId;
   goClass(c){
     localStorage.setItem('cid',c.id);
     console.log(c.id)
-    console.log(localStorage.getItem('cid'))
+    console.log(localStorage.getItem('cid'));
     this.api.getStudentClass(localStorage.getItem('cid')).subscribe(response=>{
       let data= response;
       // data.id = c.classId;
@@ -43,9 +43,9 @@ userId;
   }
 
 
-  getClasses(){
+  getClasses(uid){
 
-    return this.api.getStudentClasses(this.userId)
+    return this.api.getStudentClasses(uid)
     .pipe(map(actions => actions.map(a =>{
             const data = a.payload.doc.data() ;
             const id = a.payload.doc.id;
@@ -56,7 +56,8 @@ userId;
       this.classes = resp;
     })
   }
-
+  
+  
 
   addClass(){
     //search class with ID

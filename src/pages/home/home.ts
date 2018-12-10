@@ -11,13 +11,10 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class HomePage {
   user = {
     email:"student@gmail.com",
-    password:"123456789",
+    password:"123456789a",
     uid:''
     };
-  // user = {
-  // email:"humna@gmail.com",
-  // password:"humna123",
-  // };
+  
   constructor(private api:ApiProvider,
     private helper:HelperProvider,private auth: AuthProvider,
      public navCtrl: NavController, public navParams: NavParams, public events: Events) {
