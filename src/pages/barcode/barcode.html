@@ -7,14 +7,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>barcode</ion-title>
-    <button ion-button full icon-left (click)="scan()" color="secondary"><ion-icon name="qr-scanner"></ion-icon>Scan Code</button>
+    <ion-title>Enroll Course</ion-title>
+    
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+<div><button ion-button full icon-left (click)="scan()" color="secondary"><ion-icon name="qr-scanner"></ion-icon>Scan Code</button></div>
+
   <div *ngIf="scanData">
     
     <p>Scanned Text :{{scanData.text}} </p>

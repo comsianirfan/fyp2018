@@ -7,27 +7,34 @@
 <ion-header>
 
   <ion-navbar color="secondary">
-    <ion-title text-center>Dashboard</ion-title>
+    <ion-title >Dashboard</ion-title>
+   
     <ion-buttons end>
-        <button ion-button icon-only><ion-icon name="notifications"></ion-icon></button>
-
+        <button ion-button icon-only (tap)="viewAlerts()"><i class="material-icons">notifications</i>
+          <span class="notification" *ngIf="alerts">{{alerts.alerts.length | number }}</span></button>
+        
+          
       <button ion-button (click)="logOut()">Logout</button>
       
     </ion-buttons>
+
+
+   
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding >
+    
   <ion-card text-center >
-    <img src="./assets/imgs/user.png" style="margin-left:90px;text-align:center;height:180px;width:auto;position:center"/>
+    <!-- <img src="./assets/imgs/logo1.png" style="margin-left:70px;text-align:center;height:180px;width:auto;position:center"/> -->
     <ion-card-content>
       <ion-card-title *ngIf="student">
        {{student.firstName}}
       </ion-card-title>
       <p>
-        Welcome to SmartClass
+        Welcome to SmartClassroom
       </p>
      
     </ion-card-content>
@@ -70,3 +77,11 @@
 
   <!--  -->
   </ion-content>
+
+  <ion-footer>
+      <ion-select #select1 *ngIf="alerts" style="width: 10px;" >
+            
+          <ion-option *ngFor="let x of alerts.alerts" (ionSelect)="manageAlert(x)" >{{x.description}}</ion-option>
+          
+        </ion-select>
+  </ion-footer>

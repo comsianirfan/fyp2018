@@ -23,13 +23,13 @@
   
 
 <ion-item *ngFor="let question of Questions" >
-  <ion-avatar item-left>
+  <!-- <ion-avatar item-left>
     <img src="./assets/imgs/class1.jpg">
-  </ion-avatar>
+  </ion-avatar> -->
   <h2>{{question?.note}}</h2>
-  <p>DATE:. {{question?.startDate}} ||  </p>
-  <button ion button  (tap)='delete(question)'><ion-icon name="trash" style="color:red"></ion-icon></button><br>
-  <button ion button  (tap)='goDiscussion(question)'><ion-icon name="arrow-dropright-circle" style="color:green"></ion-icon></button>
+  <p>DATE:. {{question?.startDate}} ||  </p><br><br>
+  <button ion button item-start  (tap)='delete(question)'><ion-icon name="trash" style="color:red"></ion-icon></button>
+  <button ion button item-end  (tap)='goDiscussion(question)'><ion-icon name="arrow-dropright-circle" style="color:green"></ion-icon></button>
 
 </ion-item>
 

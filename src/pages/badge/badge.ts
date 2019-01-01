@@ -27,7 +27,7 @@ Badge;
   ionViewDidLoad() {
     console.log('ionViewDidLoad BadgePage');
     this.getUser();
-    
+    // console.log(this.navCtrl)
   }
 
 

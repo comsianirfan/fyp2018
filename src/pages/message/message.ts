@@ -114,7 +114,7 @@ export class MessagePage {
   }
   
   getStudent(){
-    this.api.getStudentProfile(this.api.studentId).subscribe(res=>{
+    this.api.getStudentProfile(localStorage.getItem('uid')).subscribe(res=>{
       this.sname=res;
       console.log("Calling From Student Name: "+this.sname.firstName+this.sname.lastName);
       

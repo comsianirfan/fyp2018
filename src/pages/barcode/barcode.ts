@@ -39,6 +39,7 @@ options :BarcodeScannerOptions;
         this.navCtrl.push('MyclassesPage');
     }, (err) => {
         console.log("Error occured : " + err);
+        this.navCtrl.push('BarcodePage');
     });         
 }    
 }

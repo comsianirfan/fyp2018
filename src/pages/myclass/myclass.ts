@@ -56,10 +56,12 @@ this.getClass()
    
   }
   details(){
-    if(this.time>=this.start&&this.time<=this.end){
    
-      this.api.sendMsg(this.class.teacherId);
-   this.navCtrl.push("MessagePage");}
+    
+    if(this.time>=this.start&&this.time<=this.end){
+      
+      this.api.sendMsg(this.class.teacherId).then(res=>{this.navCtrl.push("MessagePage");})
+   }
    else{
     let alert = this.alertCtrl.create({
       title: 'Teacher not availaible',

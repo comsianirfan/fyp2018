@@ -197,7 +197,7 @@ getTeacherMessage(teacherId){
 }
 
 sendMsg(tid){
-  return this.afs.collection('sent').doc(this.studentId.concat(tid)).set({
+  return this.afs.collection('sent').doc(localStorage.getItem('uid').concat(tid)).set({
     'sent':
       firebase.    firestore.FieldValue.arrayUnion("START TEST")
       
