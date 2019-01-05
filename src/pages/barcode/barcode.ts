@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { QRScannerStatus, QRScanner } from '@ionic-native/qr-scanner';
+// import { QRScannerStatus, QRScanner } from '@ionic-native/qr-scanner';
 import { BarcodeScanner ,BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { ApiProvider } from '../../providers/api/api';
 
